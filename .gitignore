@@ -1,0 +1,10 @@
+# VS Code files
+.vscode
+
+# Python files
+__pycache__
+.pyc
+
+# other files
+power-to-choose.xlsx
+power-to-choose-offers.csv
