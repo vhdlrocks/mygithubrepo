@@ -25,7 +25,6 @@ def vp_start_gui():
     '''Starting point when module is the main routine.'''
     global val, w, root
     root = tk.Tk()
-    powertochoose_support.set_Tk_var()
     top = topGui (root)
     powertochoose_support.init(root, top)
     root.mainloop()
@@ -38,7 +37,6 @@ def create_topGui(rt, *args, **kwargs):
     #rt = root
     root = rt
     w = tk.Toplevel (root)
-    powertochoose_support.set_Tk_var()
     top = topGui (w)
     powertochoose_support.init(w, top, *args, **kwargs)
     return (w, top)
