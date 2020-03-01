@@ -7,6 +7,8 @@ the default name power-to-choose.xlxs.
 
 import xlrd
 from tabulate import tabulate
+import matplotlib.pyplot as plt
+
 #----------------------------------------------------------------------
 def open_file_example(path):
     """
@@ -43,12 +45,38 @@ def open_file_example(path):
 
     print(type(first_sheet))
 
-# def withUsageFindBestPrice(fname):
-#     """
-#     Open and read an Excel file
-#     """
-#     book = xlrd.open_workbook(path)
+def getLstCol(list_2d, col):
+    # col = col
+    # list_2d = list_2d
+    # val = len(list_2d)
+    # print('val: {}'.format(val))
+    # return [row[col] for row in range(1,len(list_2d))]
+    col_lst = []
+    for i in range(1,len(list_2d)):
+        col_lst.append(list_2d[i][col])
+    return col_lst
 
+def monthYear(data):
+    monthYearLst = []
+    for i in range(1,len(data)):
+        monthYearLst.append('{}/{}'.format(str(data[i][0]), str(data[i][1])))
+    return monthYearLst
+
+def plotUsageHistory(data):
+    # x_val = getLstCol(data,0)
+    # x_val_str = []
+    # for i in x_val:
+    #     x_val_str.append(monthYear(data))
+    x_val = monthYear(data)
+    y_val = getLstCol(data,2)
+    plt.ylabel(data[0][2])
+    plt.xlabel(data[0][0])
+    # plt.plot(x_val, y_val, 'ro', label='Usage History')
+    plt.plot(x_val, y_val, label='Usage History')
+    # plt.bar(f[:N // 2], np.abs(fft)[:N // 2] * 1 / N, width=1.5)  # Bar graph
+    # plt.plot(f[:N // 2], np.abs(fft)[:N // 2] * 1 / N)  # Smooth curves graph
+    # plt.legend(loc='best')
+    plt.show()
 
 
 #----------------------------------------------------------------------
@@ -65,6 +93,30 @@ if __name__ == "__main__":
     pastUsageMonths     = ['jan', 'feb', 'oct', 'nov', 'dec', 'jan', 'feb']
     pastUsage           = [3306, 2339, 2066, 2273, 1584]
     pastUsageNumDays    = [29, 31, 31, 34, 29]
+
+    pastUsageData = [   [ 'month', 'year', 'usage_kwh', 'cost', 'num_days'],
+                        [       6,   2018,        3394,   None,       None],
+                        [       7,   2018,        3535,   None,       None],
+                        [       8,   2018,        3853,   None,       None],
+                        [       9,   2018,        2790,   None,       None],
+                        [      10,   2018,        2035,   None,       None],
+                        [      11,   2018,        1651,   None,       None],
+                        [      12,   2018,        1784,   None,       None],
+                        [       1,   2019,        1216,   None,       None],
+                        [       2,   2019,        1350,   None,       None],
+                        [       3,   2019,        1626,   None,       None],
+                        [       4,   2019,        2649,   None,       None],
+                        [       5,   2019,        3270,   None,       None],
+                        [       6,   2019,        3907,   None,       None],
+                        [       7,   2019,        2730,   None,       None],
+                        [       8,   2019,        3722,   None,       None],
+                        [       9,   2019,        3500,   None,       None], # Guessed
+                        [      10,   2019,        3306,   None,         29],
+                        [      11,   2019,        2339,   None,         31],
+                        [      12,   2019,        2066,   None,         31],
+                        [       1,   2020,        2273,   None,         34],
+                        [       2,   2020,        1584,   None,         29]
+    ]
 
     pkwh500 = 4
     pkwh1000 = 5
@@ -114,3 +166,4 @@ if __name__ == "__main__":
     print('\r')
     print(tabulate(table, headers))
 
+    plotUsageHistory(pastUsageData)
