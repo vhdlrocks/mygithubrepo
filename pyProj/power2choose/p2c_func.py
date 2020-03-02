@@ -3,6 +3,11 @@
 First, go to powertochoose.org, put in your zip code, and finally at the bottom right hand side of the screen
 click the button to "Export results to Excel". Save the file to the same folder that this python file is at using
 the default name power-to-choose.xlxs.
+
+http://powertochoose.org/en-us/Plan/Results#
+
+https://electricityplans.com/texas/plans/?zipcode=77494&tdu=cnp&usage=2500&fwp_plan_term=1.00%2C60.00&fwp_sort=plan_rate_asc
+
 """
 
 import xlrd
@@ -78,9 +83,68 @@ def plotUsageHistory(data):
     # plt.legend(loc='best')
     plt.show()
 
+def runWebUtil():
+    # Chrome driver download: https://chromedriver.chromium.org/downloads
+    from selenium import webdriver
+    import time
+    from selenium.webdriver.common.keys import Keys
 
+    driver = webdriver.Chrome(executable_path='C:/Users/vhdlr/Desktop/mygithubrepo/pyProj/power2choose/chromedriver_win32/chromedriver.exe')
+    driver.get('http://powertochoose.org')
+
+    #homezipcode
+    field_id = 'homezipcode'
+    field = driver.find_element_by_id(field_id)
+    field.send_keys('77494')
+    field.send_keys(Keys.ENTER)
+    field.submit()
+
+    #view_all_results
+    # time.sleep(5)
+    # btn_id = 'view_all_results'
+    # btn = driver.find_element_by_id(btn_id)
+    # btn.click()
+
+    #export-excel
+    # xpath = '//*[@id="resultsForm"]/div/div/div[1]/div[1]/div[3]/a[2]'
+    # btn_id = 'export-excel'
+    # class_name = 'export-excel'
+    # selector = '#resultsForm > div > div > div.paging-box.tc.paging-grid.k-pager-wrap.k-widget > div.sorting.lower-dropdown > div:nth-child(3) > a.export-excel'
+    # selector = 'a.export-excel'
+    # driver.current_url
+    # btn = driver.find_element_by_class_name(class_name)
+    # btn = driver.find_element_by_xpath(xpath)
+    # btn = driver.find_element_by_link_text(btn_id)
+    # btn = driver.find_element_by_css_selector(selector)
+    # btn.click()
+    # driver.get('http://powertochoose.org')
+    driver.get('http://powertochoose.org/en-us/Plan/Results#')
+
+    
+    #resultsForm > div > div > div.paging-box.bc.paging-grid-footer.k-pager-wrap.k-widget > div.sorting > div:nth-child(3) > a.export-excel
+    #resultsForm > div > div > div.paging-box.bc.paging-grid-footer.k-pager-wrap.k-widget > div.sorting > div:nth-child(3) > a.export-excel
+    # //*[@id="resultsForm"]/div/div/div[1]/div[1]/div[3]/a[2]
+    # http://powertochoose.org/en-us/Plan/Results#
+    #resultsForm > div > div > div.paging-box.tc.paging-grid.k-pager-wrap.k-widget > div.sorting.lower-dropdown > div:nth-child(3) > a.export-excel
+    #resultsForm > div > div > div.paging-box.tc.paging-grid.k-pager-wrap.k-widget > div.sorting.lower-dropdown > div:nth-child(3) > a.export-excel
+    
+
+    #homezipcode
+    time.sleep(5) # Let the user actually see something!
+    driver.quit()
+
+    # driver = webdriver.Chrome('/path/to/chromedriver')  # Optional argument, if not specified will search path.
+    # driver.get('http://www.google.com/');
+    # time.sleep(5) # Let the user actually see something!
+    # search_box = driver.find_element_by_name('q')
+    # search_box.send_keys('ChromeDriver')
+    # search_box.submit()
+    # time.sleep(5) # Let the user actually see something!
+    # driver.quit()
 #----------------------------------------------------------------------
-if __name__ == "__main__":
+
+# if __name__ == "__main__":
+def main():
     path = "power-to-choose.xlsx"
     # open_file_example(path)
 
@@ -90,9 +154,6 @@ if __name__ == "__main__":
     numCols = p2c_sheet.ncols
 
     estimatedUsage = 2500
-    pastUsageMonths     = ['jan', 'feb', 'oct', 'nov', 'dec', 'jan', 'feb']
-    pastUsage           = [3306, 2339, 2066, 2273, 1584]
-    pastUsageNumDays    = [29, 31, 31, 34, 29]
 
     pastUsageData = [   [ 'month', 'year', 'usage_kwh', 'cost', 'num_days'],
                         [       6,   2018,        3394,   None,       None],
@@ -166,4 +227,11 @@ if __name__ == "__main__":
     print('\r')
     print(tabulate(table, headers))
 
-    plotUsageHistory(pastUsageData)
+    # plotUsageHistory(pastUsageData)
+
+    runWebUtil()
+
+
+
+if __name__ == "__main__":
+    main()
