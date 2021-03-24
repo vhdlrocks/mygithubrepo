@@ -1,0 +1,37 @@
+
+
+
+Display: https://www.adafruit.com/product/2900
+MCU: https://store.arduino.cc/usa/leonardo
+Motor: https://www.adafruit.com/product/4638
+
+
+Arduino Interrupt sites:
+https://www.arduino.cc/reference/en/language/functions/external-interrupts/attachinterrupt/
+http://gammon.com.au/interrupts
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
