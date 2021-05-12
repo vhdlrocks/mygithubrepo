@@ -134,39 +134,23 @@ void getRPM() {
     if (rpmTimeNowMS - rpmTimeLast > RPM_CALC_RATE_MS) {
         if (time_val[0] != 0) { // Skip first value of zero
             digitalWrite(!digitalRead(LED_BUILTIN), LOW);
-            // const int staleThresholdUS = RPM_CALC_RATE_MS * 1000;
-            // unsigned long timeNowUS = micros();
-            // RPM = 0;
-            // for(int i = 0; i < NUM_TIME_SAMPLES-1; i++) {
-            //     if (timeNowUS - time_val[i] > staleThresholdUS ) {
-            //         RPM += RPM;
-            //         // printRPM();
-            //     } else {
-            //         RPM += 1;
-            //     }
-            // }
-
-            // if (RPM != 0) {
-                rpmUpdating = 1; // Let ISR know RPM calculation has started
-                unsigned long tempSum = 0;
-                for(int i = 0; i < NUM_TIME_SAMPLES-1; i++) {
-                    // Todo: check for wrap around values
-                    if (time_val[i+1] > time_val[i]){
-                        tempSum += (time_val[i+1] - time_val[i]);
-                    }
+            rpmUpdating = 1; // Let ISR know RPM calculation has started
+            unsigned long tempSum = 0;
+            for(int i = 0; i < NUM_TIME_SAMPLES-1; i++) {
+                // Todo: check for wrap around values
+                if (time_val[i+1] > time_val[i]){
+                    tempSum += (time_val[i+1] - time_val[i]);
                 }
+            }
 
-                float rev = tempSum/NUM_TIME_SAMPLES;
-                rev = 1.0 / rev;            // rev per us
-                rev *= 1000000;             // rev per sec
-                rev *= 60;                  // rev per min
-                rev /= GEARING;             // account for gear ratio
-                rev /= ENCODERMULT;         // account for multiple ticks per rotation
-                RPM = rev;
-                // printRPM();
-            // } else {
-            //     RPM = 0;
-            // }
+            float rev = tempSum/NUM_TIME_SAMPLES;
+            rev = 1.0 / rev;            // rev per us
+            rev *= 1000000;             // rev per sec
+            rev *= 60;                  // rev per min
+            rev /= GEARING;             // account for gear ratio
+            rev /= ENCODERMULT;         // account for multiple ticks per rotation
+            RPM = rev;
+
             printRPM();
         }
         rpmUpdating = 0; // Let ISR know RPM calculation is done

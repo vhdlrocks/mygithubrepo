@@ -1,0 +1,195 @@
+
+
+
+------------------------------------------------
+2/8/2021: Thermoplate test fixture - BOM and wiring diagram
+------------------------------------------------
+1/19/2021: Phone call, Matt, Power supply/PID/Relay configuration and hardware needs discussion (29 min)
+1/20/2021: Component search (3 hours)
+1/21/2021: Thermal Calibration Plate wiring diagram (1.5 hours)
+
+Pick:
+PID -> CN16D3-RR-2U-CM-AC (OMEGA) https://www.omega.com/en-us/control-monitoring/controllers/pid-controllers/p/CND3-Series
+Fan -> 603-2238-ND (Digikey) 12V, 6A (8A max) https://www.digikey.com/en/products/detail/delta-electronics/BFM1012UHFF8/10244642?WT.z_se_ps=1&s=N4IgTCBcDaIGwAYDMBaMYkA4UDkAiIAugL5A
+TC  -> NB2-CAIN-116U-12-TBSL (OMEGA)
+12 Vdc DIN supply:
+    x2 PN: EDR-120-12
+    https://www.alliedelec.com/product/mean-well/edr-120-12/70473598/
+    In stock
+12 Vdc DIN ctrl relays (Fans):
+    x2 PN: 2966906
+    https://www.alliedelec.com/product/phoenix-contact/2966906/70207954/
+12 Vdc DIN ctrl relays (Element):
+    x1 PN: 2966906
+    https://www.alliedelec.com/product/phoenix-contact/2967617/70208121/
+
+Relays if needed
+PID if Matt's pick doesn't work
+
+Relays:
+https://www.omega.com/en-us/communication-and-connectivity/interface-cards/electromechanical-relays/p/D7P
+
+acct: 3368
+$1488.86
+
+1/19/2021: Phone call, Matt, Power supply/PID/Relay configuration and hardware needs discussion (29 min)
+1/20/2021: Component search (3 hours)
+1/21/2021: Thermal Calibration Plate wiring diagram (1.5 hours)
+
+Pick:
+PID -> CN16D3-RR-2U-CM-AC (OMEGA) https://www.omega.com/en-us/control-monitoring/controllers/pid-controllers/p/CND3-Series
+Fan -> 603-2238-ND (Digikey) 12V, 6A (8A max) https://www.digikey.com/en/products/detail/delta-electronics/BFM1012UHFF8/10244642?WT.z_se_ps=1&s=N4IgTCBcDaIGwAYDMBaMYkA4UDkAiIAugL5A
+TC  -> NB2-CAIN-116U-12-TBSL (OMEGA)
+12 Vdc DIN supply:
+    x2 PN: EDR-120-12
+    https://www.alliedelec.com/product/mean-well/edr-120-12/70473598/
+    In stock
+12 Vdc DIN ctrl relays (Fans):
+    x2 PN: 2966906
+    https://www.alliedelec.com/product/phoenix-contact/2966906/70207954/
+12 Vdc DIN ctrl relays (Element):
+    x1 PN: 2966906
+    https://www.alliedelec.com/product/phoenix-contact/2967617/70208121/
+
+Relays if needed
+PID if Matt's pick doesn't work
+
+Relays:
+https://www.omega.com/en-us/communication-and-connectivity/interface-cards/electromechanical-relays/p/D7P
+
+Rotisery: motor, dial, on/off switch, ac source, 1-100 rpm
+CSM: small, no bluetooth/wifi
+    stepper motor:
+    drill motor: speed?
+    User interface: Preference, LCD - no pc/monitor/etc.
+Another HEAT type project: Pneumatic operated ejection system
+    Set temp:
+
+
+------------------------------------------------
+2/8/2021: CSM Design - Drill speed and depth control
+------------------------------------------------
+2/8/2021: Initial hardware selection deep dive (2.0 hours)
+
+CSM - Confined Space Mill
+
+DC Motor:
+    Encoder for speed control
+    Motor driver
+    Torque specs?
+
+Stepper motor:
+    Motor driver
+
+Controller (micro controller or rasberryPi
+    What type of interface? LED, 7-segment, LCD, UART (PC)
+    What type of control? Pushbutton, knob?
+    
+    
+    
+Option #1:
+    RasberryPi (2x20 connection port): https://www.sparkfun.com/products/16388?_ga=2.239580675.1658648667.1612796948-680840604.1612796948&_gac=1.24010440.1612796948.Cj0KCQiA34OBBhCcARIsAG32uvMosQgYjNP15wwUGYWHmpGt9GbNIx4JM6KD8IihyKl29IPVoM6v4gMaAj4iEALw_wcB
+    
+    RasPi motor control hat: https://www.adafruit.com/product/2348
+    
+    DC motor: https://www.adafruit.com/product/4416#technical-details
+    
+    DC motor encoder: 
+    
+    Stepper motor (unipolar or bipolar with single coil, double coil, interleaved or micro-stepping): 
+    
+    LCD Display: 
+        https://www.sparkfun.com/products/16987
+        https://www.adafruit.com/product/661
+    
+    
+Option #2:
+    Arduino:  Arduino UNO, Leonardo, ADK/Mega R3, Diecimila & Duemilanove
+
+    https://www.digikey.com/en/products/detail/adafruit-industries-llc/2795/5774241?s=N4IgTCBcDaIIIBMCGAzATgVwJYBcAEAYgKZI4AWRaeAzGBgCx6JIA2A9gOYeUgC6AvkA
+    on adafruit: https://www.adafruit.com/product/2795?gclid=Cj0KCQiA4feBBhC9ARIsABp_nbV38ul4HiUsjwzT_IuaGQgJM-OzMvDxHcJEHCWtQRaY_BMkzW2NG44aArFREALw_wcB
+
+    motor control hat: https://www.adafruit.com/product/1438
+    
+    DC motor with encoder: https://www.adafruit.com/product/4416#technical-details
+    
+    Stepper motor (unipolar or bipolar with single coil, double coil, interleaved or micro-stepping): 
+        https://www.digikey.com/en/products/detail/sparkfun-electronics/ROB-10846/5318748
+        on sparkfun: https://www.sparkfun.com/products/10846
+
+    Stepper controller:
+        https://www.digikey.com/en/products/detail/sparkfun-electronics/ROB-12859/5172292
+        on sparkfun: https://learn.sparkfun.com/tutorials/big-easy-driver-hookup-guide?_ga=2.91535449.293831081.1614722965-680840604.1612796948&_gac=1.187144538.1614722965.Cj0KCQiA4feBBhC9ARIsABp_nbW8ZHhb1ELSqTFZFRR7KfGzgSWC234xxgVbzyI1rWoP44inZF5VTz4aAtayEALw_wcB
+
+    LCD Display: 
+        https://www.sparkfun.com/products/16987
+        https://www.adafruit.com/product/661
+    
+    
+    sparkfun: .48 Nm / 68 oz-in holding torque
+    McMasterCarr: 149 in-oz
+
+    shaft:
+        len main: 20mm
+        len 2nd: 23mm
+        dia: 8mm
+
+        BLDC motor controller:
+        https://github.com/Infineon/IFX007T-Motor-Control
+        https://www.infineon.com/dgdl/Infineon-Motor_Control_Shield_with_IFX007T_for_Arduino-UM-UM-v01_00-EN.pdf?fileId=5546d462694c98b401696d2026783556
+    https://www.digikey.com/short/0n00mqbj
+
+    PS pins 2-ckt jack: 09501021
+    
+------------------------------------------------
+2/8/2021: Rotisserie Design - Motor, knob, on/off switch, power
+------------------------------------------------
+    Rotisery: motor, dial, on/off switch, ac source available only, 100 rpm max, bi-directional control
+
+    Microcontroller board: https://store.arduino.cc/usa/leonardo
+    Motor Controller: https://www.adafruit.com/product/1438
+        **Get the stacking headers (see option under "add to cart"
+    Motor: https://www.digikey.com/en/products/detail/adafruit-industries-llc/4416/11476034?s=N4IgjCBcoLQBxVAYygMwIYBsDOBTANCAPZQDa4ArAEwIC6AvvYVWSACxtgBsIDQA
+     or 
+    https://www.adafruit.com/product/4638
+    
+    Potentiometer (10k ohm): https://www.adafruit.com/product/562
+    Knob: https://www.adafruit.com/product/2058
+    On/Off swtich: https://www.adafruit.com/product/482
+    
+    Sketch for motor control: https://github.com/adafruit/Adafruit_Motor_Shield_V2_Library/blob/master/examples/encoderMotorRPM/encoderMotorRPM.ino
+    
+    
+    https://www.digikey.com/en/products/detail/adafruit-industries-llc/85/5154649?s=N4IgTCBcDaIMoAkCSBRAMgEQARwCoEEBhAaSQDkBxLBFfDFAJTiwDEB5BrfBjAVXLYgAugF8gA
+    https://www.digikey.com/en/products/detail/triad-magnetics/WAU12-200/4915294?utm_adgroup=AC%20AC%20Wall%20Adapters&utm_source=google&utm_medium=cpc&utm_campaign=Shopping_Product_Power%20Supplies%20-%20External%2FInternal%20%28Off-Board%29_NEW&utm_term=&utm_content=AC%20AC%20Wall%20Adapters&gclid=Cj0KCQiAvvKBBhCXARIsACTePW_j_DQpLrNMHJEbvfg1dkc4uuZnWsrZCN4X48OJiz8ghJFsmcYbgNoaAjNDEALw_wcB
+    
+    
+    
+    
+    
+    
+    
+------------------------------------------------
+3/29/2021: Additional hardware/components/lab equipment
+------------------------------------------------
+    
+Power supply: Siglent Technologies SPD3303X-E Triple Output Power Supply
+https://www.amazon.com/Siglent-Technologies-SPD3303X-Triple-Output/dp/B01410O424/ref=sr_1_1_sspa?dchild=1&keywords=SPD3303X-E&qid=1617024476&s=industrial&sr=1-1-spons&psc=1&spLa=ZW5jcnlwdGVkUXVhbGlmaWVyPUExQ0IyOVdERjBVTjg5JmVuY3J5cHRlZElkPUEwOTY4NjQwMzRCTFhHTkgwMkJEVCZlbmNyeXB0ZWRBZElkPUEwNDMxODUxMVBIMEQwV0lWVlAyTSZ3aWRnZXROYW1lPXNwX2F0ZiZhY3Rpb249Y2xpY2tSZWRpcmVjdCZkb05vdExvZ0NsaWNrPXRydWU=
+
+PS Connectors: Sumnacon 39 Inch Multimeter Test Lead
+https://www.amazon.com/Sumnacon-Inch-Multimeter-Test-Lead/dp/B07VDNHCFM/ref=sr_1_25?dchild=1&keywords=mini+grabber&qid=1617024946&s=hi&sr=1-25
+
+Test leads: Goupchn Mini Grabber Test Hooks
+https://www.amazon.com/dp/B08M5Z5YFG/ref=sspa_dk_detail_1?psc=1&pd_rd_i=B08M5Z5YFG&pd_rd_w=F0aNJ&pf_rd_p=4269e1a0-a218-4fbd-9748-1cd337d2f2a5&pd_rd_wg=qiFXX&pf_rd_r=KN081H5M679CXMEW73NH&pd_rd_r=763b49d7-9d3c-4943-bc73-3498dcefe21c&spLa=ZW5jcnlwdGVkUXVhbGlmaWVyPUFFM1NOODhXUjkxQ0UmZW5jcnlwdGVkSWQ9QTAyNTYzMDkxUDdKNk1BNUJTWEw3JmVuY3J5cHRlZEFkSWQ9QTA4MTgzNjIyWDAxSkJBM1pKMVc4JndpZGdldE5hbWU9c3BfZGV0YWlsJmFjdGlvbj1jbGlja1JlZGlyZWN0JmRvTm90TG9nQ2xpY2s9dHJ1ZQ==
+2-input screw terminals: https://www.digikey.com/en/products/detail/282834-2/A98333-ND/1150135?itemSeq=356926634
+Solder:
+    0.31", RA
+    https://www.digikey.com/en/products/detail/chip-quik-inc/RASW-031-8OZ/9681992
+    0.62": RA
+    https://www.digikey.com/en/products/detail/mg-chemicals/4888-227G/2177385
+    
+    
+    
+    
+    
+    
