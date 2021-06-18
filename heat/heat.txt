@@ -189,7 +189,21 @@ Solder:
     https://www.digikey.com/en/products/detail/mg-chemicals/4888-227G/2177385
     
     
-    
-    
-    
-    
+
+
+Arduino Interrupt sites:
+https://www.arduino.cc/reference/en/language/functions/external-interrupts/attachinterrupt/
+http://gammon.com.au/interrupts
+
+Arduino functions homepage: https://www.arduino.cc/reference/en/
+
+    5.5
+    35
+    24
+    54.5
+    = 119 = $16065
+
+    = 9 + 4 + 6 + 7
+    + 7 + 7 + 6 + 6
+
+    https://learn.adafruit.com/memories-of-an-arduino/optimizing-sram

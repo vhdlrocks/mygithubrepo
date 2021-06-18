@@ -6,6 +6,7 @@
 *
 */
 
+// iCE_test_unit_v0 cell number: 6123572643
 
 
 // assign destination phone number
@@ -74,13 +75,13 @@ void setup()
 
 //***************** UNCOMMENT ME ONLY FOR DEBUG ****************************** 
   // initialize serial debug communication with PC over USB connection
-  Serial.begin(9600);
-//  while (!Serial) ; // wait for serial debug port to connect to PC
-  for (int q = 5; q > 0; q--)
-  {
-    Serial.println(q, DEC);
-    delay(250);
-  }
+//   Serial.begin(9600);
+    while (!Serial) ; // wait for serial debug port to connect to PC
+    for (int q = 5; q > 0; q--)
+    {
+        Serial.println(q, DEC);
+        delay(250);
+    }
 //***************************************************************************/ 
 
   cellModemOff();
@@ -140,7 +141,7 @@ void loop()
 //    Serial.println("Collecting GPS data");
 //    getGPSLocAndSendToWeb();
     Serial.println("Getting Switch Data");
-    exositeGet();
+    // exositeGet();
   }
 
 //  if(swCntr == 2)

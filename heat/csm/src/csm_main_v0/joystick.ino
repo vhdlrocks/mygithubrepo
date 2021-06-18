@@ -4,14 +4,6 @@
 
 Adafruit_seesaw ss;
 
-#define BUTTON_RIGHT 6
-#define BUTTON_DOWN  7
-#define BUTTON_LEFT  9
-#define BUTTON_UP    10
-#define BUTTON_SEL   14
-#define BUTTON_DFLT  0
-
-uint32_t button_mask = (1 << BUTTON_RIGHT) | (1 << BUTTON_DOWN) | (1 << BUTTON_LEFT) | (1 << BUTTON_UP) | (1 << BUTTON_SEL);
 
 #define IRQ_PIN 5
 
@@ -19,14 +11,14 @@ void init_js() {
 
     // Serial.println("Joy FeatherWing example!");
     /* Initialise the sensor */
-    Serial.print("Initializing HMI...");
+    Serial.print(F("Initializing HMI..."));
 
     if(!ss.begin(0x49)){
-        Serial.println("ERROR! seesaw not found");
+        Serial.println(F("ERROR! seesaw not found"));
         while(1);
     } else {
-        Serial.print("OK");
-        Serial.print(" Seesaw driver version: ");
+        Serial.print(F("OK"));
+        Serial.print(F(" Seesaw driver version: "));
         Serial.println(ss.getVersion(), HEX);
     }
     ss.pinModeBulk(button_mask, INPUT_PULLUP);
@@ -38,14 +30,19 @@ void init_js() {
 
 int last_x = 0, last_y = 0;
 
-int js_update() {
+int js_update(int* update_x, int* update_y) {
+    int analog_threshold = 64;
     int x = ss.analogRead(2);
     int y = ss.analogRead(3);
 
-    if ( (abs(x - last_x) > 3)  ||  (abs(y - last_y) > 3)) {
-        Serial.print(x); Serial.print(", "); Serial.println(y);
+    // if ( (abs(x - last_x) > analog_threshold)  ||  (abs(y - last_y) > analog_threshold)) {
+    if ((x > (511+analog_threshold)) || (x < (511-analog_threshold)) || (y > (511+analog_threshold)) || (y < (511-analog_threshold))) {
+        Serial.print(x); Serial.print(F(", ")); Serial.println(y);
         last_x = x;
         last_y = y;
+        *update_x = x;
+        *update_y = y;
+        return JOYSTICK_VAL;
     }
   
     /* if(!digitalRead(IRQ_PIN)) {  // Uncomment to use IRQ */
@@ -55,23 +52,23 @@ int js_update() {
     //Serial.println(buttons, BIN);
 
     if (! (buttons & (1 << BUTTON_RIGHT))) {
-      Serial.println("Button A pressed");
+    //   Serial.println("Button A pressed");
       return BUTTON_RIGHT;
     }
     if (! (buttons & (1 << BUTTON_DOWN))) {
-      Serial.println("Button B pressed");
+    //   Serial.println("Button B pressed");
       return BUTTON_DOWN;
     }
     if (! (buttons & (1 << BUTTON_LEFT))) {
-      Serial.println("Button Y pressed");
+    //   Serial.println("Button Y pressed");
       return BUTTON_LEFT;
     }
     if (! (buttons & (1 << BUTTON_UP))) {
-      Serial.println("Button X pressed");
+    //   Serial.println("Button X pressed");
       return BUTTON_UP;
     }
     if (! (buttons & (1 << BUTTON_SEL))) {
-      Serial.println("Button SEL pressed");
+    //   Serial.println("Button SEL pressed");
       return BUTTON_SEL;
     }
     /* } // Uncomment to use IRQ */

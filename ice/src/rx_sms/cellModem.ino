@@ -35,7 +35,7 @@ void initCellModem(void)
   while (!connectionGood) {
 
     // send command to modem to get network status
-    Serial1.println("AT+CREG?");
+    Serial1.println("AT+CEREG?");
     currentString = "";
     delay(500);
 

@@ -14,8 +14,8 @@ This example is in the public domain.
 
 // assign destination phone number
 // destination phone number of 1-555-444-3333 should be formated like: 15554443333
-//#define DESTINATION_PHONE_NUMBER "12083017145" //Jeff
-  #define DESTINATION_PHONE_NUMBER "17138184532" //Andy
+#define DESTINATION_PHONE_NUMBER "12083017145" //Jeff
+//   #define DESTINATION_PHONE_NUMBER "17138184532" //Andy
 
 // SMS message you want to send, limited to 160 characters
 String SMS_MESSAGE = "Andy, this is the funky message from the module :)";
