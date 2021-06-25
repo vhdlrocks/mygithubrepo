@@ -206,4 +206,13 @@ Arduino functions homepage: https://www.arduino.cc/reference/en/
     = 9 + 4 + 6 + 7
     + 7 + 7 + 6 + 6
 
+01/22: 0.5+3+1.5+0.5=       5.5
+03/05: 5+6.5+7.5+5.5+6+4.5= 35
+03/26: 8+5+4+3+4=           24
+05/07: 6+6+6+8+7.5+4+8+9=   54.5
+                           =119
+05/14: 9+4+6+7+7+6+6=       45
+06/18: 9+9+8+5=             31
+                           =119+76=195
+
     https://learn.adafruit.com/memories-of-an-arduino/optimizing-sram

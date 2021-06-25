@@ -72,12 +72,21 @@ volatile unsigned long testTimeKeeper = 0; // Test start time
 
 const bool eeDflt = true;
 
+#if defined(feather32u4)
+    const char BOARD[5] = "feather32u4";
+#elif defined(__AVR_ATmega32U4__) || defined(__AVR_ATmega16U4__)
+    const char BOARD[5] = "32u4";
+#else
+    const char BOARD[8] = "Unknown";
+#endif
+
 void setup() {
 
 
     Serial.begin(115200);
     while (!Serial);
     Serial.println(F("Initializing AFRL peripherals"));
+    Serial.print("Board: ");Serial.println(BOARD);
 
     // <EEPROM> : No EEPROM on M0!!!
     // if (eeDflt) {
